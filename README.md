@@ -22,7 +22,7 @@ The default `OS` is `linux` and the default `ARCH` is `amd64`.
 You can provide them as environment variables:
 
 ```sh
-OS="macos" ARCH="arm64" make fetch
+OS="darwin" ARCH="arm64" make fetch
 ```
 
 You can change the version by providing it as environment variables:

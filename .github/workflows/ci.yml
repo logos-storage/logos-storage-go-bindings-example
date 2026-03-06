@@ -19,7 +19,7 @@ jobs:
             name: linux
           
           - os: macos-latest
-            name: macos
+            name: darwin
             cpu: arm64
           
           - os: windows-latest
