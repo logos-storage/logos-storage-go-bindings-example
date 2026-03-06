@@ -4,7 +4,7 @@ LIBS_DIR := $(abspath ./libs)
 # Flags for CGO to find the headers and the shared library
 UNAME_S := $(shell uname -s)
 CGO_CFLAGS  := -I$(LIBS_DIR)
-CGO_LDFLAGS := -L$(LIBS_DIR) -lcodex -Wl,-rpath,$(LIBS_DIR)
+CGO_LDFLAGS := -L$(LIBS_DIR) -lstorage -Wl,-rpath,$(LIBS_DIR)
 
 ifeq ($(OS),Windows_NT)
   BIN_NAME := example.exe
@@ -15,15 +15,15 @@ endif
 # Configuration for fetching the right binary
 OS ?= "linux"
 ARCH ?= "amd64"
-VERSION ?= "v0.0.21"
-DOWNLOAD_URL := "https://github.com/codex-storage/codex-go-bindings/releases/download/$(VERSION)/codex-${OS}-${ARCH}.zip"		
+VERSION ?= "v0.3.1"
+DOWNLOAD_URL := "https://github.com/logos-storage/logos-storage-nim/releases/download/$(VERSION)/libstorage-${OS}-${ARCH}-$(VERSION).zip"		
 
 all: run
 
 fetch: 
-	@echo "Fetching libcodex from GitHub Actions from: ${DOWNLOAD_URL}"
-	curl -fSL --create-dirs -o $(LIBS_DIR)/codex-${OS}-${ARCH}.zip ${DOWNLOAD_URL}
-	unzip -o -qq $(LIBS_DIR)/codex-${OS}-${ARCH}.zip -d $(LIBS_DIR)
+	@echo "Fetching libstorage from GitHub Actions from: ${DOWNLOAD_URL}"
+	curl -fSL --create-dirs -o $(LIBS_DIR)/libstorage-${OS}-${ARCH}-$(VERSION).zip ${DOWNLOAD_URL}
+	unzip -o -qq $(LIBS_DIR)/libstorage-${OS}-${ARCH}-$(VERSION).zip -d $(LIBS_DIR)
 	rm -f $(LIBS_DIR)/*.zip
 
 build:

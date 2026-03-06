@@ -2,34 +2,35 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"log"
 	"os"
 
-	"github.com/codex-storage/codex-go-bindings/codex"
+	"github.com/logos-storage/logos-storage-go-bindings/storage"
 )
 
 func main() {
-	node, err := codex.New(codex.Config{
+	node, err := storage.New(storage.Config{
 		BlockRetries: 5,
 	})
 	if err != nil {
-		log.Fatalf("Failed to create Codex node: %v", err)
+		log.Fatalf("Failed to create Logos Storage node: %v", err)
 	}
 
 	version, err := node.Version()
 	if err != nil {
-		log.Fatalf("Failed to get Codex version: %v", err)
+		log.Fatalf("Failed to get Logos Storage version: %v", err)
 	}
-	log.Printf("Codex version: %s", version)
+	log.Printf("Logos Storage version: %s", version)
 
 	if err := node.Start(); err != nil {
-		log.Fatalf("Failed to start Codex node: %v", err)
+		log.Fatalf("Failed to start Logos Storage node: %v", err)
 	}
-	log.Println("Codex node started")
+	log.Println("Logos Storage node started")
 
 	buf := bytes.NewBuffer([]byte("Hello World!"))
 	len := buf.Len()
-	cid, err := node.UploadReader(codex.UploadOptions{Filepath: "hello.txt"}, buf)
+	cid, err := node.UploadReader(context.Background(), storage.UploadOptions{Filepath: "hello.txt"}, buf)
 	if err != nil {
 		log.Fatalf("Failed to upload data: %v", err)
 	}
@@ -41,11 +42,11 @@ func main() {
 	}
 	defer f.Close()
 
-	opt := codex.DownloadStreamOptions{
+	opt := storage.DownloadStreamOptions{
 		Writer: f,
 	}
 
-	if err := node.DownloadStream(cid, opt); err != nil {
+	if err := node.DownloadStream(context.Background(), cid, opt); err != nil {
 		log.Fatalf("Failed to download data: %v", err)
 	}
 
@@ -57,11 +58,11 @@ func main() {
 	// <-ch
 
 	if err := node.Stop(); err != nil {
-		log.Fatalf("Failed to stop Codex node: %v", err)
+		log.Fatalf("Failed to stop Logos Storage node: %v", err)
 	}
-	log.Println("Codex node stopped")
+	log.Println("Logos Storage node stopped")
 
 	if err := node.Destroy(); err != nil {
-		log.Fatalf("Failed to destroy Codex node: %v", err)
+		log.Fatalf("Failed to destroy Logos Storage node: %v", err)
 	}
 }
