@@ -17,10 +17,8 @@ func main() {
 		log.Fatalf("Failed to create Logos Storage node: %v", err)
 	}
 
-	version, err := node.Version()
-	if err != nil {
-		log.Fatalf("Failed to get Logos Storage version: %v", err)
-	}
+	version := node.Version()
+
 	log.Printf("Logos Storage version: %s", version)
 
 	if err := node.Start(); err != nil {
