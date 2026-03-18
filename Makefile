@@ -15,12 +15,12 @@ endif
 # Configuration for fetching the right binary
 OS ?= "linux"
 ARCH ?= "amd64"
-VERSION ?= "v0.3.1"
-DOWNLOAD_URL := "https://github.com/logos-storage/logos-storage-nim/releases/download/$(VERSION)/libstorage-${OS}-${ARCH}-$(VERSION).zip"		
+VERSION ?= "v0.3.2"
+DOWNLOAD_URL := "https://github.com/logos-storage/logos-storage-nim/releases/download/$(VERSION)/libstorage-${OS}-${ARCH}-$(VERSION).zip"
 
 all: run
 
-fetch: 
+fetch:
 	@echo "Fetching libstorage from GitHub Actions from: ${DOWNLOAD_URL}"
 	curl -fSL --create-dirs -o $(LIBS_DIR)/libstorage-${OS}-${ARCH}-$(VERSION).zip ${DOWNLOAD_URL}
 	unzip -o -qq $(LIBS_DIR)/libstorage-${OS}-${ARCH}-$(VERSION).zip -d $(LIBS_DIR)
