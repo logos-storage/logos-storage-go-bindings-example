@@ -1,8 +1,8 @@
-# Example Codex Go Bindings
+# Example Logos Storage Go Bindings
 
-This repository demonstrates how to integrate the [Codex Go bindings](https://github.com/codex-storage/codex-go-bindings) into a Go project.
+This repository demonstrates how to integrate the [Logos Storage Go bindings](https://github.com/logos-storage/logos-storage-go-bindings/) into a Go project.
 
-The project starts a Codex node, uploads and downloads some data and then stops the node.
+The project starts a Logos Storage node, uploads and downloads some data and then stops the node.
 
 ## Usage
 
@@ -22,13 +22,13 @@ The default `OS` is `linux` and the default `ARCH` is `amd64`.
 You can provide them as environment variables:
 
 ```sh
-OS="macos" ARCH="arm64" make fetch
+OS="darwin" ARCH="arm64" make fetch
 ```
 
 You can change the version by providing it as environment variables:
 
 ```sh
-VERSION="v0.0.21" make fetch
+VERSION="v0.3.2" make fetch
 ```
 
 The default folder is `libs`, you can change it by editing the `Makefile`.
