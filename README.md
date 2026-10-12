@@ -28,7 +28,7 @@ OS="darwin" ARCH="arm64" make fetch
 You can change the version by providing it as environment variables:
 
 ```sh
-VERSION="v0.3.2" make fetch
+VERSION="v0.5.3" make fetch
 ```
 
 The default folder is `libs`, you can change it by editing the `Makefile`.
