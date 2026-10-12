@@ -15,7 +15,7 @@ endif
 # Configuration for fetching the right binary
 OS ?= "linux"
 ARCH ?= "amd64"
-VERSION ?= "v0.3.2"
+VERSION ?= "v0.5.3"
 DOWNLOAD_URL := "https://github.com/logos-storage/logos-storage-nim/releases/download/$(VERSION)/libstorage-${OS}-${ARCH}-$(VERSION).zip"
 
 all: run
